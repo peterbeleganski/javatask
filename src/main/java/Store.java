@@ -11,7 +11,7 @@ import java.util.List;
 public class Store {
     public static void main(String... args) {
         List<Item> results = new ArrayList<>();
-        List<Item> items = readDataFromCSV("input-bread.csv");
+        List<Item> items = readDataFromCSV("input-tomato.csv");
 
         parseAndSetValues(results, items);
 
@@ -38,10 +38,26 @@ public class Store {
                 } else if ( quality == 3) {
                     price =1.0;
                 }
-
-                item.setPrice(price);
-                results.add(item);
+            } else if (itemKind.equals("Cheese")) {
+                if(quality == 1) {
+                    price = 15.00;
+                } else if (quality == 2) {
+                    price = 12.00;
+                } else if ( quality == 3) {
+                    price = 6.00;
+                }
+            } else if (itemKind.equals("Tomato")) {
+                if(quality == 1) {
+                    price = 6.00;
+                } else if (quality == 2) {
+                    price = 4.50;
+                } else if ( quality == 3) {
+                    price = 2;
+                }
             }
+
+            item.setPrice(price);
+            results.add(item);
         }
     }
 
