@@ -9,14 +9,6 @@ public class ItemType {
         this.typeName = typeName;
     }
 
-    @Override
-    public String toString() {
-        return "ItemType{" +
-                "typeName='" + typeName + '\'' +
-                ", parameter='" + parameter + '\'' +
-                '}';
-    }
-
     public String getParameter() {
         return parameter;
     }
@@ -31,5 +23,13 @@ public class ItemType {
 
     public void setTypeName(String typeName) {
         this.typeName = typeName;
+    }
+
+    @Override
+    public String toString() {
+        return "ItemType{" +
+                "typeName='" + typeName + '\'' +
+                ", parameter='" + parameter + '\'' +
+                '}';
     }
 }

@@ -11,16 +11,6 @@ public class Item {
         this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Item{" +
-                "serialNumber='" + serialNumber + '\'' +
-                ", type=" + type +
-                ", quality='" + quality + '\'' +
-                ", price=" + price +
-                '}';
-    }
-
     public String getSerialNumber() {
         return serialNumber;
     }
@@ -51,5 +41,15 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "serialNumber='" + serialNumber + '\'' +
+                ", type=" + type +
+                ", quality='" + quality + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

@@ -10,9 +10,15 @@ import java.util.List;
 
 public class Store {
     public static void main(String... args) {
-        List<Item> results = new ArrayList<Item>();
+        List<Item> results = new ArrayList<>();
         List<Item> items = readDataFromCSV("input-bread.csv");
 
+        parseAndSetValues(results, items);
+
+        printResults(results);
+    }
+
+    private static void parseAndSetValues(List<Item> results, List<Item> items) {
         for (Item item : items) {
             String itemKind = items.get(1).getType().getTypeName();
 
@@ -37,8 +43,6 @@ public class Store {
                 results.add(item);
             }
         }
-
-        printResults(results);
     }
 
     private static void printResults(List<Item> results) {
