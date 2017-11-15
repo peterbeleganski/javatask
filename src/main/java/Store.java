@@ -5,17 +5,38 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
 public class Store {
     public static void main(String... args) {
         List<Item> results = new ArrayList<>();
-        List<Item> items = readDataFromCSV("input-tomato.csv");
+        List<Item> tomatoItems = readDataFromCSV("input-tomato.csv");
+        List<Item> cheeseItems = readDataFromCSV("input-cheese.csv");
+        List<Item> breadItems = readDataFromCSV("input-bread.csv");
 
-        parseAndSetValues(results, items);
+
+        parseAndSetValues(results, breadItems);
+        parseAndSetValues(results, cheeseItems);
+        parseAndSetValues(results, tomatoItems);
+
+        Collections.sort(results, new PriceComparator());
+        Collections.sort(breadItems, new PriceComparator());
+        Collections.sort(cheeseItems, new PriceComparator());
+        Collections.sort(tomatoItems, new PriceComparator());
+
 
         printResults(results);
+        // printTopThreePrices(tomatoItems, cheeseItems, breadItems);
+    }
+
+    private static void printTopThreePrices(List<Item> tomatoItems, List<Item> cheeseItems, List<Item> breadItems) {
+        System.out.println("Top 3");
+        System.out.println(tomatoItems.get(0));
+        System.out.println(cheeseItems.get(0));
+        System.out.println(breadItems.get(0));
     }
 
     private static void parseAndSetValues(List<Item> results, List<Item> items) {
