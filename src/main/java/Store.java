@@ -4,10 +4,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 
 public class Store {
@@ -17,7 +14,12 @@ public class Store {
         List<Item> cheeseItems = readDataFromCSV("input-cheese.csv");
         List<Item> breadItems = readDataFromCSV("input-bread.csv");
 
+        parseAndSortCollections(results, tomatoItems, cheeseItems, breadItems);
+        printInstructions();
+        inputOptionsCheck(results, tomatoItems, cheeseItems, breadItems);
+    }
 
+    private static void parseAndSortCollections(List<Item> results, List<Item> tomatoItems, List<Item> cheeseItems, List<Item> breadItems) {
         parseAndSetValues(results, breadItems);
         parseAndSetValues(results, cheeseItems);
         parseAndSetValues(results, tomatoItems);
@@ -26,10 +28,41 @@ public class Store {
         Collections.sort(breadItems, new PriceComparator());
         Collections.sort(cheeseItems, new PriceComparator());
         Collections.sort(tomatoItems, new PriceComparator());
+    }
 
+    private static void printInstructions() {
+        System.out.println("Choose option to proceed:");
+        System.out.println("1 - Top 3 the most expensive items");
+        System.out.println("2 - The count of all parsed items");
+        System.out.println("3 - All bread items with Barley flour");
+    }
 
-        printResults(results);
-        // printTopThreePrices(tomatoItems, cheeseItems, breadItems);
+    private static void inputOptionsCheck(List<Item> results, List<Item> tomatoItems, List<Item> cheeseItems, List<Item> breadItems) {
+        Scanner sc = new Scanner(System.in);
+
+        int option = Integer.parseInt(sc.nextLine());
+
+        switch (option) {
+            case 1: {
+                printTopThreePrices(tomatoItems, cheeseItems, breadItems);
+                break;
+            }
+            case 2: {
+                printSizeOfAllItems(results);
+                break;
+            }
+            case 3: {
+                results.stream()
+                        .filter(i -> i.getType().getParameter().equals("Barley"))
+                        .forEach(item -> System.out.println(item));
+                break;
+            }
+        }
+    }
+
+    private static void printSizeOfAllItems(List<Item> results) {
+        int size = results.size();
+        System.out.println("The count of all items is: " + size);
     }
 
     private static void printTopThreePrices(List<Item> tomatoItems, List<Item> cheeseItems, List<Item> breadItems) {
