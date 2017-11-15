@@ -35,6 +35,8 @@ public class Store {
         System.out.println("1 - Top 3 the most expensive items");
         System.out.println("2 - The count of all parsed items");
         System.out.println("3 - All bread items with Barley flour");
+        System.out.println("10 - Exit the input menu");
+        System.out.println("-------- ENTER YOUR OPTION BELOW --------");
     }
 
     private static void inputOptionsCheck(List<Item> results, List<Item> tomatoItems, List<Item> cheeseItems, List<Item> breadItems) {
@@ -42,22 +44,27 @@ public class Store {
 
         int option = Integer.parseInt(sc.nextLine());
 
-        switch (option) {
-            case 1: {
-                printTopThreePrices(tomatoItems, cheeseItems, breadItems);
-                break;
+        while (option != 10) {
+            switch (option) {
+                case 1: {
+                    printTopThreePrices(tomatoItems, cheeseItems, breadItems);
+                    break;
+                }
+                case 2: {
+                    printSizeOfAllItems(results);
+                    break;
+                }
+                case 3: {
+                    results.stream()
+                            .filter(i -> i.getType().getParameter().equals("Barley"))
+                            .forEach(item -> System.out.println(item));
+                    break;
+                }
             }
-            case 2: {
-                printSizeOfAllItems(results);
-                break;
-            }
-            case 3: {
-                results.stream()
-                        .filter(i -> i.getType().getParameter().equals("Barley"))
-                        .forEach(item -> System.out.println(item));
-                break;
-            }
+            option = Integer.parseInt(sc.nextLine());
         }
+
+
     }
 
     private static void printSizeOfAllItems(List<Item> results) {

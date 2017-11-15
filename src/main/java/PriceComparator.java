@@ -8,7 +8,7 @@ public class PriceComparator implements Comparator<Item> {
         double secondPrice = item2.getPrice();
 
         if(firstPrice > secondPrice) {
-            return -11;
+            return -1;
         } else if (secondPrice > firstPrice) {
             return 1;
         }else {
