@@ -6,6 +6,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static java.util.Collections.sort;
+
 
 public class Store {
     public static void main(String... args) {
@@ -24,10 +26,10 @@ public class Store {
         parseAndSetValues(results, cheeseItems);
         parseAndSetValues(results, tomatoItems);
 
-        Collections.sort(results, new PriceComparator());
-        Collections.sort(breadItems, new PriceComparator());
-        Collections.sort(cheeseItems, new PriceComparator());
-        Collections.sort(tomatoItems, new PriceComparator());
+        sort(breadItems, new PriceComparator());
+        sort(cheeseItems, new PriceComparator());
+        sort(tomatoItems, new PriceComparator());
+        sort(results, new PriceComparator());
     }
 
     private static void printInstructions() {
@@ -57,7 +59,7 @@ public class Store {
                 case 3: {
                     results.stream()
                             .filter(i -> i.getType().getParameter().equals("Barley"))
-                            .forEach(item -> System.out.println(item));
+                            .forEach(System.out::println);
                     break;
                 }
             }
@@ -74,8 +76,8 @@ public class Store {
 
     private static void printTopThreePrices(List<Item> tomatoItems, List<Item> cheeseItems, List<Item> breadItems) {
         System.out.println("Top 3");
-        System.out.println(tomatoItems.get(0));
         System.out.println(cheeseItems.get(0));
+        System.out.println(tomatoItems.get(0));
         System.out.println(breadItems.get(0));
     }
 

@@ -49,7 +49,6 @@ public class Item {
                 "serialNumber='" + serialNumber + '\'' +
                 ", type=" + type +
                 ", quality='" + quality + '\'' +
-                ", price=" + price +
-                '}';
+                ", price=" + price + "лв}";
     }
 }

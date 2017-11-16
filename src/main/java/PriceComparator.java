@@ -7,13 +7,7 @@ public class PriceComparator implements Comparator<Item> {
         double firstPrice = item1.getPrice();
         double secondPrice = item2.getPrice();
 
-        if(firstPrice > secondPrice) {
-            return -1;
-        } else if (secondPrice > firstPrice) {
-            return 1;
-        }else {
-            return 0;
-        }
+        return Double.compare(secondPrice, firstPrice);
 
     }
 }
